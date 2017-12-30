@@ -7,11 +7,8 @@
 @implementation SquareApp
 
 
-
-
-- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options;
+- (BOOL)application:(UIApplication*)application openURL:(NSURL*)url sourceApplication:(NSString*)sourceApplication annotation:(id)annotation
 {
-    NSString *const sourceApplication = options[UIApplicationOpenURLOptionsSourceApplicationKey];
     // Make sure the URL comes from Square Register; fail if it doesn't.
     if (![sourceApplication hasPrefix:@"com.squareup.square"]) {
         return NO;
@@ -22,13 +19,12 @@
     SCCAPIResponse *const response = [SCCAPIResponse responseWithResponseURL:url error:&decodeError];
     
     NSString *message = nil;
-    NSString *title = nil;
-
-    NSMutableDictionary* resultDict = [[NSMutableDictionary new] autorelease];
+ 
+    NSMutableDictionary* resultDict = [NSMutableDictionary new];
     
     // Process the response as desired.
     if (response.isSuccessResponse && !decodeError) {
-        resultDict[@"transactionId"] = response.transactionId;
+        resultDict[@"transactionId"] = response.transactionID;
         CDVPluginResult* result = [CDVPluginResult
                                resultWithStatus: CDVCommandStatus_OK
                                messageAsDictionary: resultDict

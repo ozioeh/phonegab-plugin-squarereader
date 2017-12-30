@@ -10,7 +10,7 @@
 
 
 @property (nonatomic, weak) id <CDVCommandDelegate> commandDelegate;
-@property (nonatomic) NSString *callback; 
+@property (nonatomic ,strong) NSString *callback;
 
 
 
