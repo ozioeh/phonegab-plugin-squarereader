@@ -31,6 +31,6 @@
     <header-file src="src/ios/SquareApp.h" target-dir="Classes" />
     <source-file src="src/ios/SquareApp.m" target-dir="Classes" />
     <source-file src="src/ios/SquareReader.mm" compiler-flags="-fno-objc-arc" target-dir="Classes" />
-    <source-file src="src/ios/SquarePointOfSaleSDK-iOS/SquarePointOfSaleSDK.xcodeproj" target-dir="/" />
+    <source-file src="src/ios/SquarePointOfSaleSDK-iOS/SquarePointOfSaleSDK.xcodeproj" target-dir="" />
    </platform>
 </plugin>
