@@ -1,0 +1,6 @@
+framework module SquarePointOfSaleSDK {
+  umbrella header "SquarePointOfSaleSDK.h"
+
+  export *
+  module * { export * }
+}
