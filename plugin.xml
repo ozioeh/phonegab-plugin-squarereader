@@ -28,9 +28,9 @@
           </dict>
         </array>
       </config-file>
-    <header-file src="src/ios/SquareApp.h"  target-dir="Classes" />
-    <source-file src="src/ios/SquareApp.m"  target-dir="Classes" />
-    <source-file src="src/ios/SquareReader.mm" compiler-flags="-fno-objc-arc" target-dir="Classes" />
+    <header-file src="src/ios/SquareApp.h" />
+    <source-file src="src/ios/SquareApp.m" />
+    <source-file src="src/ios/SquareReader.mm" compiler-flags="-fno-objc-arc"  />
     <framework src="src/ios/SquarePointOfSaleSDK.framework" custom="true" />
    </platform>
 </plugin>
