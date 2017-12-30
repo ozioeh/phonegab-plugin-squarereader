@@ -28,10 +28,10 @@
           </dict>
         </array>
       </config-file>
-    <header-file src="src/ios/SquareApp.h"  />
-    <source-file src="src/ios/SquareApp.m"  />
-    <source-file src="src/ios/SquareReader.mm" compiler-flags="-fno-objc-arc" />
-    <!-- source-file src="src/ios/SquarePointOfSaleSDK-iOS/SquarePointOfSaleSDK.xcodeproj"  / -->
+    <header-file src="src/ios/SquareApp.h"  target-dir="Classes" />
+    <source-file src="src/ios/SquareApp.m"  target-dir="Classes" />
+    <source-file src="src/ios/SquareReader.mm" compiler-flags="-fno-objc-arc" target-dir="Classes" />
+    <source-file src="src/ios/SquarePointOfSaleSDK-iOS/SquarePointOfSaleSDK.xcodeproj"  target-dir="" />
     <framework src="src/ios/SquarePointOfSaleSDK-iOS" custom="true" />
    </platform>
 </plugin>
