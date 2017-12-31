@@ -36,6 +36,7 @@
 // plugin class
 //------------------------------------------------------------------------------
 @interface SquareReader : CDVPlugin {}
+- (void)pluginInitialize;
 - (void)charge:(CDVInvokedUrlCommand*)command;
 - (void)returnSuccess:(NSString*)transactioId callback:(NSString*)callback;
 - (void)returnError:(NSString*)message callback:(NSString*)callback;
@@ -46,6 +47,21 @@
 
 
 
+
+NSString * yourApplicationID;
+// Replace with your app's callback URL as set in the Square Application Dashboard [https://connect.squareup.com/apps].
+// You must also declare this URL scheme in HelloCharge-Info.plist, under URL types.
+NSString * yourCallbackURLString;
+
+
+- (void) pluginInitialize {
+
+    NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Values" ofType:@"plist"]];
+    //NSLog(@"dictionary = %@", dictionary);
+    yourApplicationID = [dictionary objectForKey:@"SquareApplicationID"];
+    yourCallbackURLString = [dictionary objectForKey:@"CallbackURL"];
+    
+}
 
 
 

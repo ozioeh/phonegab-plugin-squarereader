@@ -18,16 +18,26 @@
         <param name="ios-package" value="SquareReader"/>
       </feature>
     </config-file>
-     <config-file target="*-Info.plist" parent="CFBundleURLTypes">
+    <config-file target="*-Info.plist" parent="CFBundleURLTypes">
         <array>
           <dict>
             <key>CFBundleURLSchemes</key>
             <array>
               <string>$URL_SCHEME</string>
             </array>
+            <key>CFBundleURLName</key>
+            <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
           </dict>
         </array>
-      </config-file>
+    </config-file>
+    <config-file target="*-Info.plist" parent="/">
+      <key>LSApplicationQueriesSchemes</key>
+      <string>square-commerce-v1</string>
+      <key>SquareApplicationID</key>
+      <string>$SQUARE_APP_ID</string>
+      <key>CallbackURL</key>
+      <string>$CALLBACK_URL</string>
+    </config-file>  
     <header-file src="src/ios/SquareApp.h" />
     <source-file src="src/ios/SquareApp.m" />
     <source-file src="src/ios/SquareReader.m" compiler-flags="-fno-objc-arc"  />
