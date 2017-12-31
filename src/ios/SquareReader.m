@@ -45,11 +45,6 @@
 @implementation SquareReader
 
 
-NSString *const yourApplicationID = @"sq0idp-yg9rzy2UZaEU3fYEM5_e8Q";//      "sq0idp-yg9rzy2UZaEU3fYEM5_e8Q";
-
-// Replace with your app's callback URL as set in the Square Application Dashboard [https://connect.squareup.com/apps].
-// You must also declare this URL scheme in HelloCharge-Info.plist, under URL types.
-NSString *const yourCallbackURLString = @"oitastore://callback";
 
 
 
@@ -57,6 +52,10 @@ NSString *const yourCallbackURLString = @"oitastore://callback";
 - (void)charge:(CDVInvokedUrlCommand*)command 
 {
     NSString*       callback;
+
+
+    [SCCAPIRequest setClientID:yourApplicationID];
+
  
     callback = command.callbackId;
     NSDictionary* options;
