@@ -36,7 +36,6 @@
 // plugin class
 //------------------------------------------------------------------------------
 @interface SquareReader : CDVPlugin {}
-- (void)pluginInitialize;
 - (void)charge:(CDVInvokedUrlCommand*)command;
 - (void)returnSuccess:(NSString*)transactioId callback:(NSString*)callback;
 - (void)returnError:(NSString*)message callback:(NSString*)callback;
@@ -48,31 +47,10 @@
 
 
 
-NSString * yourApplicationID;
-// Replace with your app's callback URL as set in the Square Application Dashboard [https://connect.squareup.com/apps].
-// You must also declare this URL scheme in HelloCharge-Info.plist, under URL types.
-NSString * yourCallbackURLString;
-
-
-- (void) pluginInitialize {
-
-    NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Values" ofType:@"plist"]];
-    //NSLog(@"dictionary = %@", dictionary);
-    yourApplicationID = [dictionary objectForKey:@"SquareApplicationID"];
-    yourCallbackURLString = [dictionary objectForKey:@"CallbackURL"];
-    
-}
-
-
-
 - (void)charge:(CDVInvokedUrlCommand*)command 
 {
     NSString*       callback;
 
-
-    [SCCAPIRequest setClientID:yourApplicationID];
-
- 
     callback = command.callbackId;
     NSDictionary* options;
     if (command.arguments.count == 0) {
@@ -81,14 +59,17 @@ NSString * yourCallbackURLString;
       options = command.arguments[0];
     }
 
-    NSString *amountString = [options[@"amount"] stringValue];
-    NSString *currencyCodeString = [options[@"currency"] stringValue];
-    NSString *notes = [options[@"notes"] stringValue];
-    NSString *locationID = [options[@"locationID"] stringValue];
-    NSString *customerID = [options[@"customerID"] stringValue];
-    NSString *userInfoString = [options[@"userInfo"] stringValue];
-    BOOL giftcard = [options[@"giftcard"] boolValue];
+    NSString *appId = options[@"applicationID"];
+    NSString *amountString = options[@"amount"];
+    NSString *currencyCodeString = options[@"currency"];
+    NSString *notes = options[@"notes"];
+    NSString *locationID = options[@"locationID"];
+    NSString *customerID = options[@"customerID"];
+    NSString *userInfoString = options[@"userInfo"];
+    NSString *callbackString = options[@"callbackURL"];
+    BOOL giftcard = ([options[@"giftcard"] compare:@"1"] == 0);
 
+    [SCCAPIRequest setClientID:appId];
     SCCAPIRequestTenderTypes tender = SCCAPIRequestTenderTypeCard;
     if (giftcard)
         tender |= SCCAPIRequestTenderTypeSquareGiftCard;
@@ -106,7 +87,7 @@ NSString * yourCallbackURLString;
     app.commandDelegate = self.commandDelegate;
     app.callback = callback; 
 
-    SCCAPIRequest *request = [SCCAPIRequest requestWithCallbackURL:[NSURL URLWithString:yourCallbackURLString]
+    SCCAPIRequest *request = [SCCAPIRequest requestWithCallbackURL:[NSURL URLWithString:callbackString]
                                                             amount:amount
                                                     userInfoString:userInfoString
                                                         locationID:locationID

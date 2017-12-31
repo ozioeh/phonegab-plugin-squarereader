@@ -30,13 +30,9 @@
           </dict>
         </array>
     </config-file>
-    <config-file target="*-Info.plist" parent="dict">
+    <config-file target="*-Info.plist" >
       <key>LSApplicationQueriesSchemes</key>
       <string>square-commerce-v1</string>
-      <key>SquareApplicationID</key>
-      <string>$SQUARE_APP_ID</string>
-      <key>CallbackURL</key>
-      <string>$CALLBACK_URL</string>
     </config-file>  
     <header-file src="src/ios/SquareApp.h" />
     <source-file src="src/ios/SquareApp.m" />
