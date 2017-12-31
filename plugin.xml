@@ -30,7 +30,7 @@
           </dict>
         </array>
     </config-file>
-    <config-file target="*-Info.plist" parent="/">
+    <config-file target="*-Info.plist" parent="dict">
       <key>LSApplicationQueriesSchemes</key>
       <string>square-commerce-v1</string>
       <key>SquareApplicationID</key>
